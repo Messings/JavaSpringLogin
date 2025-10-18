@@ -1,5 +1,5 @@
 A Java Spring template for authorizing user's api calls based on their roles. 
-Uses Spring security with bcrypt hashing and DaoAuthenticationProvider
+Uses Spring security (sessions) with bcrypt hashing and DaoAuthenticationProvider
 
 Uses Postgres db:
 PostgreSQL Table Setup:
