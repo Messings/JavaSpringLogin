@@ -30,7 +30,9 @@ CREATE TABLE user_roles (
 
 -- Give users roles
 INSERT INTO user_roles (user_id, role_id) VALUES
+
 (1, 2),  -- Give user with id=1 → ROLE_ADMIN
+
 (5, 1);  -- Give user with id=5 → ROLE_USER
 
 
