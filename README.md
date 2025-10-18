@@ -1,10 +1,24 @@
-A Java Spring template for authorizing user's api calls based on their roles. 
-Uses Spring security (sessions) with bcrypt hashing and DaoAuthenticationProvider
+# 🔐 Java Spring Role-Based Authorization Template by messings
 
-Uses Postgres db:
-PostgreSQL Table Setup:
+A **Spring Boot** template for authorizing user API calls based on their **roles** using **Spring Security**, **BCrypt password hashing**, and **PostgreSQL**.
 
+---
 
+## 🧩 Features
+
+- ✅ Secure authentication using **Spring Security (sessions)**
+- 🔑 Passwords hashed with **BCrypt**
+- 🧍‍♂️ Role-based access control (`ROLE_USER`, `ROLE_ADMIN`)
+- 🗄️ **PostgreSQL** database integration
+- ⚙️ Authentication handled via **DaoAuthenticationProvider**
+- 🧰 Ready to test using **Postman**
+
+---
+
+## 1.
+## 🏗️ Database Setup (PostgreSQL)
+
+```sql
 -- Roles table
 CREATE TABLE roles (
     id SERIAL PRIMARY KEY,
@@ -18,7 +32,7 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL
 );
 
--- Join table for the many-to-many relationship
+-- Join table for many-to-many relationship
 CREATE TABLE user_roles (
     user_id BIGINT NOT NULL,
     role_id BIGINT NOT NULL,
@@ -27,12 +41,31 @@ CREATE TABLE user_roles (
     CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
 );
 
-
--- Give users roles
+-- Example: assign roles to users
 INSERT INTO user_roles (user_id, role_id) VALUES
+(1, 2),  -- user id=1 → ROLE_ADMIN
+(5, 1);  -- user id=5 → ROLE_USER
 
-(1, 2),  -- Give user with id=1 → ROLE_ADMIN
+```
 
-(5, 1);  -- Give user with id=5 → ROLE_USER
+## 2.📨 Postman
+POST /register
+Content-Type: application/json
+- register via json. ( /register and /login urls are whitelisted from authorizeHttpRequests)
+{
+  "username": "john",
+  "password": "mypassword"
+}
+
+## 3. Assign role in the db query:
+INSERT INTO user_roles (user_id, role_id) VALUES (1, 1);
+
+## 4. Test the endpoints
+/admin → Only ROLE_ADMIN can access
+
+/api/product → Both ROLE_USER and ROLE_ADMIN has access
+
+/login & /register → Public endpoints
+
 
 
