@@ -1,4 +1,4 @@
-A Java Spring template for authorizing users based on their roles. 
+A Java Spring template for authorizing user's api calls based on their roles. 
 Uses Spring security with bcrypt hashing and DaoAuthenticationProvider
 
 Uses Postgres db:
