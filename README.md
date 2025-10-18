@@ -52,10 +52,13 @@ INSERT INTO user_roles (user_id, role_id) VALUES
 POST /register
 Content-Type: application/json
 - register via json. ( /register and /login urls are whitelisted from authorizeHttpRequests)
+```json
 {
   "username": "john",
   "password": "mypassword"
 }
+```
+
 
 ## 3. Assign role in the db query:
 INSERT INTO user_roles (user_id, role_id) VALUES (1, 1);
